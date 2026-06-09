@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm So Sorry</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #4a4a4a;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        .heart-icon {
+            font-size: 50px;
+            color: #ff4d6d;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff4d6d;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #cc0033;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ff4d6d;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #ff0a36;
+            transform: translateY(-2px);
+        }
+
+        /* This hides the YouTube player so she only hears the audio */
+        #youtube-player {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="heart-icon">❤️</div>
+        <h2>I'm Sorry, My Mommy Hon</h2> 
+        
+        <p>
+            I hate that I upset you, and I hate seeing us like this. You mean the absolute world to me, and I want to make things right. Please forgive me?
+        </p>
+        
+        <p class="highlight">I love you more than words can say.</p>
+        
+        <button id="musicBtn" class="btn" onclick="playMusic()">🎵 Click for a Message</button>
+
+        <iframe id="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/KA0qGkoKarQ?enablejsapi=1&start=57" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        function playMusic() {
+            var player = document.getElementById('youtube-player');
+            // This sends a command to the YouTube iframe to play the video with sound
+            player.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            
+            // Updates the button text after she clicks it
+            var btn = document.getElementById('musicBtn');
+            btn.innerHTML = "❤️ I will Make it Up to You";
+            btn.style.background = "#cc0033";
+            btn.style.cursor = "default";
+            btn.onclick = null; // Disables further clicks
+        }
+    </script>
+
+</body>
+</html>
